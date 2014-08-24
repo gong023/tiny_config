@@ -10,7 +10,7 @@ Gem::Specification.new do |spec|
   spec.email         = ["gon.gong.gone@gmail.com"]
   spec.description   = %q{simple and tiny config class for casual use}
   spec.summary       = %q{simple and tiny config class}
-  spec.homepage      = "https://gong023.com/gong023/tiny_config"
+  spec.homepage      = "https://github.com/gong023/tiny_config"
   spec.license       = "MIT"
 
   spec.files         = `git ls-files`.split($/)
