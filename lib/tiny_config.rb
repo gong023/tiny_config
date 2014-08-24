@@ -13,14 +13,13 @@ class TinyConfig
 
         define_method config_key do
           v = instance_variable_get("@#{config_key}")
-          v.nil? ? raise(TinyConfig::ConfigKeyNillError, message) : v
+          v.nil? ? raise(TinyConfig::ConfigKeyNillError, message(config_key)) : v
         end
       end
 
-      def message
+      def message config_key
         namespace = self.class.to_s.split('::').last.downcase
-        required_key = caller()[1].match(/`.*'?/).to_s.delete('`\'')
-        "#{namespace} #{required_key} is requried."
+        "#{namespace} #{config_key} is requried."
       end
     }
   end
