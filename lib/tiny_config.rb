@@ -29,6 +29,10 @@ class TinyConfig
     const_get(namespace.capitalize).instance
   end
 
+  def self.clear!
+    constants.each { |c| remove_const(c) unless c =~ /Error$/ }
+  end
+
   class ConfigKeyNillError < StandardError; end
   class UndefinedNamespaceError < StandardError; end
 end

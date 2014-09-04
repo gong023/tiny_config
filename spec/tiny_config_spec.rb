@@ -35,4 +35,14 @@ describe TinyConfig, order: :defined do
       it { expect { TinyConfig.unregistered.key }.to raise_error TinyConfig::UndefinedNamespaceError }
     end
   end
+
+  context 'clear!' do
+    it 'deletes all const' do
+      TinyConfig.register(:config_d, :key)
+      TinyConfig.register(:config_e, :key)
+      TinyConfig.clear!
+      expect { TinyConfig.config_d.key }.to raise_error TinyConfig::UndefinedNamespaceError
+      expect { TinyConfig.config_e.key }.to raise_error TinyConfig::UndefinedNamespaceError
+    end
+  end
 end
