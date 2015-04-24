@@ -1,5 +1,9 @@
 require 'spec_helper'
 
+describe 'README' do
+  it { expect { ReadmeSpec.evaluate(binding) }.not_to raise_error }
+end
+
 describe TinyConfig, order: :defined do
   it 'should have a version number' do
     expect(TinyConfig::VERSION).not_to be_nil

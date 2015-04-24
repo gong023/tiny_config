@@ -19,12 +19,19 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
-TinyConfig.register(:twitter, [:access_token, :access_secret]);
+config = TinyConfig.register(:twitter, [:access_token, :access_secret]);
+expect(config).to be TinyConfig::Twitter
+expect(TinyConfig.twitter).to be_instance_of TinyConfig::Twitter
+
 TinyConfig.twitter.access_token = 'abcd'
-TinyConfig.twitter.access_token
-=> 'abcd'
-TinyConfig.twitter.access_secret
-=> Throws Exception
+expect(TinyConfig.twitter.access_token).to eq 'abcd'
+expect { TinyConfig.twitter.access_secret }.to raise_error TinyConfig::ConfigKeyNillError
+
+expect { TinyConfig.unregistered.key }.to raise_error TinyConfig::UndefinedNamespaceError
+
+TinyConfig.clear!
+expect { TinyConfig.twitter.access_token }.to raise_error TinyConfig::UndefinedNamespaceError
+expect { TinyConfig.twitter.access_secret }.to raise_error TinyConfig::UndefinedNamespaceError
 ```
 
 ## Contributing

@@ -30,7 +30,7 @@ class TinyConfig
   end
 
   def self.clear!
-    constants.each { |c| remove_const(c) unless c =~ /Error$/ }
+    constants.each { |c| remove_const(c) unless c =~ /Error$/ || c == :VERSION }
   end
 
   class ConfigKeyNillError < StandardError; end
